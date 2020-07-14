@@ -18,6 +18,7 @@ class zendserver::params {
   $admin_email = "root@${::fqdn}"
   $zsurl = 'http://localhost:10081'
   $create_facts = true
+  $manage_service = true #added by CBIZ
 
   # Make sure that Zend Server is in the path of every exec
   Exec {

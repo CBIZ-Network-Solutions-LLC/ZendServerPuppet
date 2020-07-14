@@ -93,10 +93,12 @@ class zendserver (
   $admin_email           = $zendserver::params::admin_email,
   $zsurl                 = $zendserver::params::zsurl,
   $default_server        = undef,
-  $external_url          = undef,) inherits zendserver::params {
+  $external_url          = undef,
+  $manage_service        = $zendserver::params::manage_service #added by CBIZ
+) inherits zendserver::params {
   validate_bool($manage_repos)
   validate_re($webserver, ['\Aapache|nginx\Z',], 'Only apache or nginx are supported.')
-  validate_re($phpversion, ['\A5.3|5.4|5.5|5.6|7.0|7.1\Z',], 'Only versions 5.4 to 7.1 are supported.')
+  validate_re($phpversion, ['\A5.3|5.4|5.5|5.6|7.0|7.1|7.2|7.3|7.4\Z',], 'Only versions 5.4 to 7.2 are supported.')
   validate_re($admin_api_key_name, ['^\w{5,20}$','api_key_name is required and must be 5-20 characters.'])
   validate_re($admin_api_key_secret, ['^\w{64}$','api_key_secret is required and must be 64 characters.'])
   anchor { 'zendserver::begin': } ->
